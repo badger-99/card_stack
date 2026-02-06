@@ -13,6 +13,13 @@ interface Props {
 export function Card({ avatar, name, role, company, quote, index }: Props) {
 	return (
 		<motion.div
+			animate={{
+				bottom: index * 115,
+				zIndex: 20 - index,
+				scale: 1 - index * 0.05,
+				rotate: (index % 2 === 0 ? -1 : 1) * index * 1.5,
+				opacity: 1 - index * 0.1,
+			}}
 			className='absolute pointer-events-none:'
 			style={{
 				bottom: index * 115,

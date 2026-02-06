@@ -43,7 +43,7 @@ export default function CardStack() {
 				const [first, ...rest] = prev;
 				return [...rest, first];
 			});
-		}, 5000);
+		}, 4000);
 
 		return () => clearInterval(interval);
 	}, []);
@@ -65,16 +65,3 @@ export default function CardStack() {
 	);
 }
 
-/* Auto floating loop */
-// useEffect(() => {
-// 	controls.start({
-// 		y: [0, -25, 0],
-// 		transition: {
-// 			duration: 6,
-// 			repeat: Infinity,
-// 			ease: 'easeInOut',
-// 		},
-// 	});
-// }, [controls]);
-
-//* <div className='w-full flex items-center justify-center '></div> */
