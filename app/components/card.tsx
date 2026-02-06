@@ -13,7 +13,7 @@ interface Props {
 export function Card({ avatar, name, role, company, quote, index }: Props) {
 	return (
 		<motion.div
-			className='absolute pointer-none:'
+			className='absolute pointer-events-none:'
 			style={{
 				bottom: index * 115,
 				zIndex: 20 - index,

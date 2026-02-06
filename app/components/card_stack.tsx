@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, useAnimation } from "framer-motion";
-import { useRef, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Card } from "./card";
 
 export default function CardStack() {
@@ -35,33 +35,46 @@ export default function CardStack() {
 		},
 	];
 
-	/* Auto floating loop */
-	// useEffect(() => {
-	// 	controls.start({
-	// 		y: [0, -25, 0],
-	// 		transition: {
-	// 			duration: 6,
-	// 			repeat: Infinity,
-	// 			ease: 'easeInOut',
-	// 		},
-	// 	});
-	// }, [controls]);
+	const [cards, setCards] = useState(testimonials);
+
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setCards((prev) => {
+				const [first, ...rest] = prev;
+				return [...rest, first];
+			});
+		}, 5000);
+
+		return () => clearInterval(interval);
+	}, []);
 
 	return (
 		<>
 			<motion.div
 				ref={containerRef}
 				animate={controls}
+				layout
+				transition={{ type: 'spring', stiffness: 300, damping: 30 }}
 				className='relative w-full max-w-sm sm:max-w-md md:max-w-lg h-85 sm:h-95 flex justify-center mb-4'
-			>
-				{testimonials.map((item, index) => (
-					<Card key={index} index={index} {...item} />
+				>
+				{cards.map((item, index) => (
+					<Card key={item.avatar} index={index} {...item} />
 				))}
 			</motion.div>
 		</>
 	);
 }
 
-{
-	/* <div className='w-full flex items-center justify-center '></div> */
-}
+/* Auto floating loop */
+// useEffect(() => {
+// 	controls.start({
+// 		y: [0, -25, 0],
+// 		transition: {
+// 			duration: 6,
+// 			repeat: Infinity,
+// 			ease: 'easeInOut',
+// 		},
+// 	});
+// }, [controls]);
+
+//* <div className='w-full flex items-center justify-center '></div> */
