@@ -20,6 +20,7 @@ export function Card({ avatar, name, role, company, quote, index }: Props) {
 				scale: 1 - index * 0.05,
 				rotate: (index % 2 === 0 ? -1 : 1) * index * 1.5,
 				transformOrigin: 'bottom center',
+				opacity: 1 - index * 0.1,
 			}}
 			whileHover={{ scale: 1.03 }}
 			transition={{ type: 'spring', stiffness: 200, damping: 20 }}
